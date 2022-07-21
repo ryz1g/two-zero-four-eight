@@ -1,0 +1,27 @@
+* {
+  font-size: 1.25rem;
+}
+.playingArea {
+  width: 100px;
+  height: 100px;
+  background-color: white;
+  background-color: #a25526;
+}
+.playingTile {
+  font-size: 40px;
+  color: white;
+  position: relative;
+}
+.grid {
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+  background-color: #aa9f2c;
+  border: 5px solid #aa9f2c;
+  width: 75%;
+}
+.playingRow {
+  display: flex;
+  flex-direction: row;
+  gap: 5px;
+}
