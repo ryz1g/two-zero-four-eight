@@ -1,0 +1,13 @@
+.grid {
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+  background-color: #aa9f2c;
+  border: 5px solid #aa9f2c;
+  width: 75%;
+}
+.playingRow {
+  display: flex;
+  flex-direction: row;
+  gap: 5px;
+}

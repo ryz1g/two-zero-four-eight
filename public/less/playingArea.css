@@ -1,0 +1,11 @@
+.playingArea {
+  width: 100px;
+  height: 100px;
+  background-color: white;
+  background-color: #a25526;
+}
+.playingTile {
+  font-size: 40px;
+  color: white;
+  position: relative;
+}
