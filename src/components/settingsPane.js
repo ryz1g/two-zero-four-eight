@@ -1,6 +1,6 @@
 import React from "react";
 
-function SettingsPane({rows, columns, setRows, setColumns, initGame, move}) {
+function SettingsPane({rows, columns, setRows, setColumns, initGame, move, undoMove}) {
     const adjustRowsAndColumns = ({operand, operation}) => {
         switch(operation) {
             case "-":
@@ -44,6 +44,7 @@ function SettingsPane({rows, columns, setRows, setColumns, initGame, move}) {
                 <button onClick={() => move("down")}>Down</button>
                 <button onClick={() => move("left")}>Left</button>
                 <button onClick={() => move("right")}>Right</button>
+                <button onClick={() => undoMove()}>Undo</button>
             </div>
         </div>
     );
