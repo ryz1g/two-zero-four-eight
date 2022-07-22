@@ -1,5 +1,5 @@
 export function solveColumns(gameState, move) {
-    if(move==="up") {
+    if(move==="Up") {
       for(let c=0;c<gameState[0].length;c++) {
         let minus=0;
         let nums=[];
@@ -40,7 +40,7 @@ export function solveColumns(gameState, move) {
   }
   
 export function solveRows(gameState, move) {
-    if(move==="left") {
+    if(move==="Left") {
         for(let r=0;r<gameState.length;r++) {
             let minus=0;
             let nums=[];
@@ -81,7 +81,7 @@ export function solveRows(gameState, move) {
 }
 
 export function combineRows(gameState, move) {
-    if(move==="left") {
+    if(move==="Left") {
         for(let r=0;r<gameState.length;r++) {
             for(let c=0;c<gameState[0].length-1;c++) {
                 if(gameState[r][c]!==-1 && gameState[r][c]===gameState[r][c+1]) {
@@ -104,7 +104,7 @@ export function combineRows(gameState, move) {
 }
 
 export function combineColumns(gameState, move) {
-    if(move==="up") {
+    if(move==="Up") {
         for(let c=0;c<gameState[0].length;c++) {
             for(let r=0;r<gameState.length-1;r++) {
                 if(gameState[r][c]!==-1 && gameState[r][c]===gameState[r+1][c]) {
@@ -128,7 +128,7 @@ export function combineColumns(gameState, move) {
 
 export function combine(gameState, move) {
     let beforeComb = JSON.parse(JSON.stringify(gameState));
-    if(move==="up" || move==="down") {
+    if(move==="Up" || move==="Down") {
         combineColumns(gameState,move);
     }
     else {
@@ -138,7 +138,7 @@ export function combine(gameState, move) {
 }
 
 export  function makeMove(gameState, move) {
-    if(move==="up" || move==="down") {
+    if(move==="Up" || move==="Down") {
         solveColumns(gameState,move);
     }
     else {

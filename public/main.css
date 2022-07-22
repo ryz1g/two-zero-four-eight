@@ -1,5 +1,10 @@
-* {
-  font-size: 1.25rem;
+.appArea {
+  display: flex;
+  font-size: 22px;
+  flex-direction: column;
+  gap: 10px;
+  align-items: center;
+  font-family: sans-serif;
 }
 .playingArea {
   width: 100px;
@@ -18,10 +23,38 @@
   gap: 5px;
   background-color: #aa9f2c;
   border: 5px solid #aa9f2c;
-  width: 75%;
 }
 .playingRow {
   display: flex;
   flex-direction: row;
   gap: 5px;
+}
+.settingsButton {
+  cursor: pointer;
+  height: 25px;
+  display: flex;
+  flex-direction: column;
+  background-color: #0d6262;
+  border-radius: 10px;
+  align-items: center;
+  padding: 4px 4px;
+}
+.settingsButton:hover {
+  background-color: #19d7d7;
+}
+.settingsButton .buttonLabel {
+  height: 22px;
+  color: white;
+}
+.buttonsRibbon {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  gap: 5px;
+}
+.topSettings {
+  display: flex;
+  gap: 5px;
+  flex-direction: column;
+  align-items: center;
 }

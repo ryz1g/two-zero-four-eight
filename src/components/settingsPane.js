@@ -1,5 +1,13 @@
 import React from "react";
 
+function SettingsButton({label, isActive, clickHandler}) {
+    return (
+        <div className={isActive ? "activeButton settingsButton" : "settingsButton"} onClick={() => clickHandler(label)}>
+            <span className="buttonLabel">{label}</span>
+        </div>
+    );
+}
+
 function SettingsPane({rows, columns, setRows, setColumns, initGame, move}) {
     const adjustRowsAndColumns = ({operand, operation}) => {
         switch(operation) {
@@ -30,20 +38,20 @@ function SettingsPane({rows, columns, setRows, setColumns, initGame, move}) {
     };
 
     return(
-        <div>
-            <div>
-                <button onClick={() => adjustRowsAndColumns({operand:"r",operation:"+"})}>Rows+</button>
-                <button onClick={() => adjustRowsAndColumns({operand:"r",operation:"-"})}>Rows-</button>
-                <button onClick={() => adjustRowsAndColumns({operand:"c",operation:"+"})}>Cols+</button>
-                <button onClick={() => adjustRowsAndColumns({operand:"c",operation:"-"})}>Cols-</button>
-                <button onClick={() => initGame()}>Start Game!</button>
-            </div>
+        <div className="topSettings">
             <div>{`Rows:${rows} Colums:${columns}`}</div>
-            <div>
-                <button onClick={() => move("up")}>Up</button>
-                <button onClick={() => move("down")}>Down</button>
-                <button onClick={() => move("left")}>Left</button>
-                <button onClick={() => move("right")}>Right</button>
+            <div className="buttonsRibbon">
+                <SettingsButton isActive={true} label={"Rows+"} clickHandler={() => adjustRowsAndColumns({operand:"r",operation:"+"})} />
+                <SettingsButton isActive={true} label={"Rows-"} clickHandler={() => adjustRowsAndColumns({operand:"r",operation:"-"})} />
+                <SettingsButton isActive={true} label={"Cols+"} clickHandler={() => adjustRowsAndColumns({operand:"c",operation:"+"})} />
+                <SettingsButton isActive={true} label={"Cols-"} clickHandler={() => adjustRowsAndColumns({operand:"c",operation:"-"})} />
+                <SettingsButton isActive={true} label={"StartGame!"} clickHandler={() => initGame()} />
+            </div>
+            <div className="buttonsRibbon">
+                <SettingsButton isActive={true} label={"Up"} clickHandler={move} />
+                <SettingsButton isActive={true} label={"Down"} clickHandler={move} />
+                <SettingsButton isActive={true} label={"Left"} clickHandler={move} />
+                <SettingsButton isActive={true} label={"Right"} clickHandler={move} />
             </div>
         </div>
     );
