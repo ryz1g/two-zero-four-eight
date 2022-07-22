@@ -8,21 +8,41 @@
 }
 .playingArea {
   width: 100px;
-  height: 100px;
-  background-color: white;
-  background-color: #a25526;
+  height: 73px;
+  padding: 27px 0px 0px 0px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  background-color: #ffffff;
 }
 .playingTile {
+  cursor: default;
   font-size: 40px;
+  margin: 0px;
   color: white;
   position: relative;
+}
+.tc1 {
+  background-color: rgba(100, 100, 100, 0.5);
+}
+.tc2 {
+  background-color: #d4d40b;
+}
+.tc3 {
+  background-color: #ff8000;
+}
+.tc2048 {
+  background-color: #ff0000;
+}
+.default {
+  background-color: rgba(0, 255, 247, 0.5);
 }
 .grid {
   display: flex;
   flex-direction: column;
   gap: 5px;
-  background-color: #aa9f2c;
-  border: 5px solid #aa9f2c;
+  background-color: #320c0c;
+  border: 5px solid #320c0c;
 }
 .playingRow {
   display: flex;
@@ -57,4 +77,23 @@
   gap: 5px;
   flex-direction: column;
   align-items: center;
+}
+.toggleButtonBox {
+  width: 45px;
+  height: 20px;
+  border: black solid 1px;
+  border-radius: 10px;
+  cursor: pointer;
+}
+.toggleButtonBox .slider {
+  position: relative;
+  top: 1px;
+  width: 18px;
+  height: 18px;
+  border-radius: 50%;
+  background-color: blue;
+  margin: 0px 1px;
+}
+.toggleButtonBox .on {
+  left: 25px;
 }

@@ -1,4 +1,5 @@
 import React from "react";
+import ToggleButton from "./toggleButton";
 
 function SettingsButton({label, isActive, clickHandler}) {
     return (
@@ -52,6 +53,8 @@ function SettingsPane({rows, columns, setRows, setColumns, initGame, move, undoM
                 <SettingsButton isActive={true} label={"Down"} clickHandler={move} />
                 <SettingsButton isActive={true} label={"Left"} clickHandler={move} />
                 <SettingsButton isActive={true} label={"Right"} clickHandler={move} />
+                <SettingsButton isActive={true} label={"Undo"} clickHandler={undoMove} />
+                <ToggleButton state="off" />
             </div>
         </div>
     );

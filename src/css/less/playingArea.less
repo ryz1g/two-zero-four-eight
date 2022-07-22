@@ -1,12 +1,37 @@
 .playingArea {
     width: 100px;
-    height: 100px;
-    background-color: white;
-    background-color: rgb(162, 85, 38);
+    height: 73px;
+    padding: 27px 0px 0px 0px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    background-color: @lightModeGrid;
 }
 
 .playingTile {
+    cursor: default;
     font-size: 40px;
+    margin: 0px;
     color: white;
     position: relative;
+}
+
+.tc1 {
+    background-color: @tileColor1;
+}
+
+.tc2 {
+    background-color: @tileColor2;
+}
+
+.tc3 {
+    background-color: @tileColor3;
+}
+
+.tc2048 {
+    background-color: @tileColor2048;
+}
+
+.default {
+    background-color: @tileDefault;
 }
