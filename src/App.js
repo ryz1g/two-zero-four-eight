@@ -15,17 +15,18 @@ function App() {
     let board = initializeGame(rows, columns);
     lastMove = JSON.parse(JSON.stringify(board));
     setGameState(board);
-  }
+  };
 
   const undoMove = () => {
     setGameState(lastMove);
-  }
+  };
 
   const handleMove = (direction) => {
     let copiedGame=JSON.parse(JSON.stringify(gameState));
-    do {
-      makeMove(copiedGame,direction);
-    }while(!combine(copiedGame, direction));
+    // do {
+    //   makeMove(copiedGame,direction);
+    // }while(!combine(copiedGame, direction));
+    makeMove(copiedGame, direction);
     if(moves !== 0) {
       lastMove = JSON.parse(JSON.stringify(gameState));
     }
@@ -34,10 +35,29 @@ function App() {
     else
       setGameState(copiedGame);
     moves=moves+1;
-  }
+  };
+
+  const handleKeyEvent = (event) => {
+    switch(event.key) {
+      case "ArrowUp":
+        handleMove("Up");
+        break;
+      case "ArrowDown":
+        handleMove("Down");
+        break;
+      case "ArrowLeft":
+        handleMove("Left");
+        break;
+      case "ArrowRight":
+        handleMove("Right");
+        break;
+      default:
+        break;
+    }
+  };
 
   return (
-    <div className="appArea">
+    <div tabIndex={0} className="appArea" onKeyDown={(event) => handleKeyEvent(event)}>
       <SettingsPane rows={rows} 
                     columns={columns} 
                     setRows={setRows} 

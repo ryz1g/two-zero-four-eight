@@ -1,4 +1,4 @@
-export function solveColumns(gameState, move) {
+export function shiftColumns(gameState, move) {
     if(move==="Up") {
       for(let c=0;c<gameState[0].length;c++) {
         let minus=0;
@@ -39,7 +39,7 @@ export function solveColumns(gameState, move) {
     }
   }
   
-export function solveRows(gameState, move) {
+export function shiftRows(gameState, move) {
     if(move==="Left") {
         for(let r=0;r<gameState.length;r++) {
             let minus=0;
@@ -85,8 +85,9 @@ export function combineRows(gameState, move) {
         for(let r=0;r<gameState.length;r++) {
             for(let c=0;c<gameState[0].length-1;c++) {
                 if(gameState[r][c]!==-1 && gameState[r][c]===gameState[r][c+1]) {
-                    gameState[r][c]=2*gameState[r][c];
-                    gameState[r][c+1]=-1;
+                    gameState[r][c+1]=2*gameState[r][c+1];
+                    gameState[r][c]=-1;
+                    c++;
                 }
             }
         }
@@ -95,8 +96,9 @@ export function combineRows(gameState, move) {
         for(let r=0;r<gameState.length;r++) {
             for(let c=gameState[0].length-1;c>0;c--) {
                 if(gameState[r][c]!==-1 && gameState[r][c]===gameState[r][c-1]) {
-                    gameState[r][c]=2*gameState[r][c];
-                    gameState[r][c-1]=-1;
+                    gameState[r][c-1]=2*gameState[r][c-1];
+                    gameState[r][c]=-1;
+                    c--;
                 }
             }
         }
@@ -108,8 +110,9 @@ export function combineColumns(gameState, move) {
         for(let c=0;c<gameState[0].length;c++) {
             for(let r=0;r<gameState.length-1;r++) {
                 if(gameState[r][c]!==-1 && gameState[r][c]===gameState[r+1][c]) {
-                    gameState[r][c]=2*gameState[r][c];
-                    gameState[r+1][c]=-1;
+                    gameState[r+1][c]=2*gameState[r+1][c];
+                    gameState[r][c]=-1;
+                    r++;
                 }
             }
         }
@@ -118,31 +121,25 @@ export function combineColumns(gameState, move) {
         for(let c=0;c<gameState[0].length;c++) {
             for(let r=gameState.length-1;r>0;r--) {
                 if(gameState[r][c]!==-1 && gameState[r][c]===gameState[r-1][c]) {
-                    gameState[r][c]=2*gameState[r][c];
-                    gameState[r-1][c]=-1;
+                    gameState[r-1][c]=2*gameState[r-1][c];
+                    gameState[r][c]=-1;
+                    r--;
                 }
             }
         }
     } 
 }
 
-export function combine(gameState, move) {
-    let beforeComb = JSON.parse(JSON.stringify(gameState));
-    if(move==="Up" || move==="Down") {
-        combineColumns(gameState,move);
-    }
-    else {
-        combineRows(gameState,move);
-    }
-    return JSON.stringify(beforeComb)===JSON.stringify(gameState);
-}
-
 export  function makeMove(gameState, move) {
     if(move==="Up" || move==="Down") {
-        solveColumns(gameState,move);
+        shiftColumns(gameState,move);
+        combineColumns(gameState, move);
+        shiftColumns(gameState,move);
     }
     else {
-        solveRows(gameState,move);
+        shiftRows(gameState,move);
+        combineRows(gameState, move);
+        shiftRows(gameState,move);
     }
 }
 
@@ -157,10 +154,27 @@ export function initializeGame(r, c) {
     }
     setRandomTile(game);
     setRandomTile(game);
+    // game[0][0]=2048;
+    // game[0][1]=1024;
+    // game[0][2]=512;
+    // game[0][3]=256;
+    // game[1][3]=128;
+    // game[1][2]=64;
+    // game[1][1]=32;
+    // game[1][0]=16;
+    // game[2][0]=8;
+    // game[2][1]=4;
+    // game[2][2]=2;
+    // game[2][3]=2;
+    // game[2][0]=2;
+    // game[2][1]=2;
+    // game[2][2]=8;
+    // game[2][3]=8;
+
     return game;
 }
 
-let randomTiles = [2,4,8];
+let randomTiles = [2,4];
 
 export function setRandomTile(gameState) {
     let emptyPlaces = [];

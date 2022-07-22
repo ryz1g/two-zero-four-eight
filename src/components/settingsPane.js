@@ -1,4 +1,6 @@
 import React from "react";
+import ToggleButton from "./toggleButton";
+import CheckBox from "./checkBox";
 
 function SettingsButton({label, isActive, clickHandler}) {
     return (
@@ -45,14 +47,17 @@ function SettingsPane({rows, columns, setRows, setColumns, initGame, move, undoM
                 <SettingsButton isActive={true} label={"Rows-"} clickHandler={() => adjustRowsAndColumns({operand:"r",operation:"-"})} />
                 <SettingsButton isActive={true} label={"Cols+"} clickHandler={() => adjustRowsAndColumns({operand:"c",operation:"+"})} />
                 <SettingsButton isActive={true} label={"Cols-"} clickHandler={() => adjustRowsAndColumns({operand:"c",operation:"-"})} />
-                <SettingsButton isActive={true} label={"StartGame!"} clickHandler={() => initGame()} />
             </div>
             <div className="buttonsRibbon">
                 <SettingsButton isActive={true} label={"Up"} clickHandler={move} />
                 <SettingsButton isActive={true} label={"Down"} clickHandler={move} />
                 <SettingsButton isActive={true} label={"Left"} clickHandler={move} />
                 <SettingsButton isActive={true} label={"Right"} clickHandler={move} />
+                <SettingsButton isActive={true} label={"Undo"} clickHandler={undoMove} />
+                {/* <ToggleButton state="off" />
+                <CheckBox isChecked={false} label="test"/> */}
             </div>
+            <SettingsButton isActive={true} label={"StartGame!"} clickHandler={() => initGame()} />
         </div>
     );
 }
