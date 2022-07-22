@@ -37,7 +37,7 @@ function App() {
   }
 
   return (
-    <div>
+    <div className="appArea">
       <SettingsPane rows={rows} 
                     columns={columns} 
                     setRows={setRows} 
