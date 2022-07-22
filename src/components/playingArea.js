@@ -8,14 +8,20 @@ function PlayingTile({value}) {
 
 function PlayingArea({value}) {
     let className="playingArea ";
-    if(value === 2 || value === 4 || value === 8) {
+    if(value === 2 || value === 4) {
         className+="tc1";
     }
-    else if(value === 16 || value === 32 || value === 64) {
+    else if(value === 8 || value === 16) {
         className+="tc2";
     }
-    else if(value === 128 || value === 256 || value === 512 || value === 1024) {
+    else if(value === 32 || value === 64) {
         className+="tc3";
+    }
+    else if(value === 128 || value === 256) {
+        className+="tc4";
+    }
+    else if(value === 512 || value === 1024) {
+        className+="tc5";
     }
     else if(value >= 2048) {
         className+="tc2048";

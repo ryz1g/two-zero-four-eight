@@ -2,14 +2,15 @@ import React from "react";
 import Grid from "./components/grid";
 import SettingsPane from "./components/settingsPane";
 import {initializeGame, makeMove, combine, setRandomTile} from "./utils/gameFunctions";
+import GameDetails from "./components/gameDetails";
 
-let moves=0;
 let lastMove = [];
 
 function App() {
   const [rows, setRows] = React.useState(4);
   const [columns, setColumns] = React.useState(4);
-  const [gameState, setGameState] = React.useState([]);
+  const [gameState, setGameState] = React.useState([[-1,-1,-1,-1],[-1,-1,-1,-1],[-1,-1,-1,-1],[-1,-1,-1,-1]]);
+  const [moves, setMoves] = React.useState(0);
 
   const initGame = () => {
     let board = initializeGame(rows, columns);
@@ -23,18 +24,17 @@ function App() {
 
   const handleMove = (direction) => {
     let copiedGame=JSON.parse(JSON.stringify(gameState));
-    // do {
-    //   makeMove(copiedGame,direction);
-    // }while(!combine(copiedGame, direction));
     makeMove(copiedGame, direction);
     if(moves !== 0) {
       lastMove = JSON.parse(JSON.stringify(gameState));
     }
-    if(!setRandomTile(copiedGame)) 
-      initGame();
-    else
-      setGameState(copiedGame);
-    moves=moves+1;
+    if(JSON.stringify(copiedGame) !== JSON.stringify(gameState)) {
+      if(!setRandomTile(copiedGame)) 
+        initGame();
+      else
+        setGameState(copiedGame);
+      setMoves(moves+1);
+    }
   };
 
   const handleKeyEvent = (event) => {
@@ -66,6 +66,7 @@ function App() {
                     move={handleMove}
                     undoMove={undoMove}/>
       <Grid gameState={gameState}/>
+      <GameDetails moves={moves}/>
     </div>
   );
 }
