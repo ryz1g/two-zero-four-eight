@@ -8,7 +8,7 @@ function SettingsButton({label, isActive, clickHandler}) {
     );
 }
 
-function SettingsPane({rows, columns, setRows, setColumns, initGame, move}) {
+function SettingsPane({rows, columns, setRows, setColumns, initGame, move, undoMove}) {
     const adjustRowsAndColumns = ({operand, operation}) => {
         switch(operation) {
             case "-":

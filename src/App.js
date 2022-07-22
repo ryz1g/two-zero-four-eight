@@ -3,6 +3,9 @@ import Grid from "./components/grid";
 import SettingsPane from "./components/settingsPane";
 import {initializeGame, makeMove, combine, setRandomTile} from "./utils/gameFunctions";
 
+let moves=0;
+let lastMove = [];
+
 function App() {
   const [rows, setRows] = React.useState(4);
   const [columns, setColumns] = React.useState(4);
@@ -10,7 +13,12 @@ function App() {
 
   const initGame = () => {
     let board = initializeGame(rows, columns);
+    lastMove = JSON.parse(JSON.stringify(board));
     setGameState(board);
+  }
+
+  const undoMove = () => {
+    setGameState(lastMove);
   }
 
   const handleMove = (direction) => {
@@ -18,10 +26,14 @@ function App() {
     do {
       makeMove(copiedGame,direction);
     }while(!combine(copiedGame, direction));
+    if(moves !== 0) {
+      lastMove = JSON.parse(JSON.stringify(gameState));
+    }
     if(!setRandomTile(copiedGame)) 
       initGame();
     else
       setGameState(copiedGame);
+    moves=moves+1;
   }
 
   return (
@@ -31,7 +43,8 @@ function App() {
                     setRows={setRows} 
                     setColumns={setColumns} 
                     initGame={initGame}
-                    move={handleMove}/>
+                    move={handleMove}
+                    undoMove={undoMove}/>
       <Grid gameState={gameState}/>
     </div>
   );
